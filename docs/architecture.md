@@ -1,22 +1,20 @@
-# NorthStar Azure Lab — Architecture
-
-## Permanent NorthStar Environment
-
 ```mermaid
 flowchart TB
-    Internet((Internet))
+    INTERNET(("Internet"))
 
-    subgraph Azure["Microsoft Azure — Canada Central"]
-        RG["Resource Group<br/>NorthStar-Azure-RG"]
+    subgraph RG["Resource Group: NorthStar-Azure-RG"]
+        direction TB
 
-        subgraph VNET["NorthStar-VNet<br/>10.0.0.0/16"]
+        subgraph VNET["NorthStar-VNet | 10.0.0.0/16"]
+            direction TB
+
+            NSG["NorthStar-Web-NSG<br/>Inbound Security Rules<br/>TCP 80 — HTTP<br/>TCP 443 — HTTPS"]
+
             SUBNET["Websubnet<br/>10.0.1.0/24"]
-            NSG["NorthStar-Web-NSG<br/>HTTP 80 / HTTPS 443"]
-        end
 
-        RG --> VNET
-        VNET --> SUBNET
-        NSG --> SUBNET
+            NSG -->|Protects| SUBNET
+        end
     end
 
-    Internet -->|HTTP / HTTPS| NSG
+    INTERNET -->|"HTTP / HTTPS"| NSG
+```
