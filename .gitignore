@@ -1,0 +1,32 @@
+# Azure
+*.publishsettings
+.azure/
+
+# Environment files and secrets
+.env
+*.env
+*.secret
+secrets/
+credentials/
+
+# SSH keys
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Bicep generated files
+*.json.bicep
+
+# Operating system / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log
